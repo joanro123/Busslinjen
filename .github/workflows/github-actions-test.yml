@@ -35,14 +35,13 @@ jobs:
         uses: actions/setup-dotnet@v1.7.2
         with:
           dotnet-version: ${{ matrix.dotnet-version }}
-      
-      - name: Install dependencies
+                 
+      - name: Dotnet restore
         run: dotnet restore 
         env:
           pathToBuildProjects: '**/**/*.*sproj'
-        
       
-      - name: Build
+      - name: Dotnet build
         run: dotnet build --configuration Release --no-restore
       
       - name: Test
@@ -50,7 +49,7 @@ jobs:
 
       # Runs a single command using the runners shell
       - name: Run a one-line script
-        run: echo Hello, world!
+        run: $dotnetVerbosity
 
       # Runs a set of commands using the runners shell
       - name: Run a multi-line script
