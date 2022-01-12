@@ -49,7 +49,7 @@ jobs:
 
       # Runs a single command using the runners shell
       - name: Run a one-line script
-        run: $dotnetVerbosity
+        run: dotnetVerbosity
         env:
           dotnetVerbosity: 'Detailed'
 
