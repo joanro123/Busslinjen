@@ -2,6 +2,10 @@
 
 name: CI
 
+env:
+  dotnetBuildConfiguration: 'Release'
+  dotnetVerbosity: 'Detailed'
+
 # Controls when the workflow will run
 on:
   # Triggers the workflow on push or pull request events but only for the master branch
@@ -31,10 +35,16 @@ jobs:
         uses: actions/setup-dotnet@v1.7.2
         with:
           dotnet-version: ${{ matrix.dotnet-version }}
+      
       - name: Install dependencies
-        run: dotnet restore
+        run: dotnet restore 
+        env:
+          pathToBuildProjects: '**/**/*.*sproj'
+        
+      
       - name: Build
         run: dotnet build --configuration Release --no-restore
+      
       - name: Test
         run: dotnet test --no-restore --verbosity normal
 
