@@ -32,8 +32,8 @@ jobs:
        pathToPackProjects: '**/src/**/*.*sproj'
        pathToNugetPackages: '**/*.nupkg'
 
-       sourceRepositoryBranch: Build.SourceBranchName
-       sourceRepositoryCommit: Build.SourceVersion
+       sourceRepositoryBranch: $Build.SourceBranchName
+       sourceRepositoryCommit: $Build.SourceVersion
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
@@ -66,4 +66,4 @@ jobs:
       - name: Run a multi-line script
         run: |
           echo Add other actions to build,
-          echo custom pack $pathToPackProjects --output $Build.ArtifactStagingDirectory"/ci" --configuration $dotnetBuildConfiguration --verbosity $dotnetVerbosity /p:Configuration=$dotnetBuildConfiguration /p:RepositoryBranch=$sourceRepositoryBranch /p:RepositoryCommit=$sourceRepositoryCommit /p:VersionSuffix=ci-$Build.BuildNumber
+          echo custom pack $pathToPackProjects --output $Build.ArtifactStagingDirectory"/ci" --configuration $dotnetBuildConfiguration --verbosity $dotnetVerbosity /p:Configuration=$dotnetBuildConfiguration /p:RepositoryBranch=$Build.SourceBranchName /p:RepositoryCommit=$Build.SourceVersion /p:VersionSuffix=ci-$Build.BuildNumber
