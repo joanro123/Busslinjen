@@ -45,7 +45,7 @@ jobs:
           dotnet-version: ${{ matrix.dotnet-version }}
                  
       - name: Dotnet restore
-        run: echo $pathToBuildProjects --verbosity $dotnetVerbosity 
+        run: dotnet restore $pathToBuildProjects --verbosity $dotnetVerbosity 
       
       - name: Dotnet build
         run: dotnet build --configuration Release --no-restore
@@ -64,4 +64,4 @@ jobs:
       - name: Run a multi-line script
         run: |
           echo Add other actions to build,
-          echo test, and deploy your project. 
+          echo $pathToBuildProjects --verbosity $dotnetVerbosity 
