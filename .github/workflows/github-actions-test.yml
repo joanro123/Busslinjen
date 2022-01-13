@@ -64,4 +64,4 @@ jobs:
       - name: Run a multi-line script
         run: |
           echo Add other actions to build,
-          echo dotnet test $(pathToTestProjects) --configuration $(dotnetBuildConfiguration) --collect "Code coverage"
+          echo dotnet test $pathToTestProjects --configuration $dotnetBuildConfiguration --collect "Code coverage"
