@@ -45,7 +45,7 @@ jobs:
           dotnet-version: ${{ matrix.dotnet-version }}
                  
       - name: Dotnet restore
-        run: dotnet restore $pathToBuildProjects --verbosity $dotnetVerbosity 
+        run: dotnet restore
       
       - name: Dotnet build
         run: dotnet build --configuration Release --no-restore
