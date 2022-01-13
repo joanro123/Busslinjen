@@ -55,7 +55,7 @@ jobs:
 
       # Runs a single command using the runners shell
       - name: Run a one-line script
-        run: echo $greeting
+        run: echo "$(greeting) he"
         env:
           greeting: 'Hello'
         
