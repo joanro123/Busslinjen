@@ -27,7 +27,13 @@ jobs:
       matrix:
         dotnet-version: ['3.1.x', '5.0.x', '6.0.x']
     env:
-      testet: 'rsgg'
+       pathToBuildProjects: '**/**/*.*sproj'
+       pathToTestProjects: '**/test/**/*.Test.*sproj'
+       pathToPackProjects: '**/src/**/*.*sproj'
+       pathToNugetPackages: '**/*.nupkg'
+
+       sourceRepositoryBranch: '$(Build.SourceBranchName)'
+       sourceRepositoryCommit: '$(Build.SourceVersion)'
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
