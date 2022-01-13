@@ -66,4 +66,4 @@ jobs:
       - name: Run a multi-line script
         run: |
           echo Add other actions to build,
-          echo custom pack ${{ env.pathToPackProjects }} --output $Build.ArtifactStagingDirectory"/ci" --configuration ${{ env.dotnetBuildConfiguration }} --verbosity ${{ env.dotnetVerbosity }} /p:Configuration=${{ env.dotnetBuildConfiguration }} /p:RepositoryBranch=$Build.SourceBranchName /p:RepositoryCommit=${{ system.pullRequest.sourceCommitId }} /p:VersionSuffix=ci-$Build.BuildNumber
+          echo custom pack ${{ env.pathToPackProjects }} --output $Build.ArtifactStagingDirectory"/ci" --configuration ${{ env.dotnetBuildConfiguration }} --verbosity ${{ env.dotnetVerbosity }} /p:Configuration=${{ env.dotnetBuildConfiguration }} /p:RepositoryBranch=$Build.SourceBranchName /p:RepositoryCommit=$Build.SourceVersion /p:VersionSuffix=ci-$Build.BuildNumber
