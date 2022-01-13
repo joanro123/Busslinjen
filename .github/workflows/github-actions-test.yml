@@ -64,4 +64,4 @@ jobs:
       - name: Run a multi-line script
         run: |
           echo Add other actions to build,
-          echo dotnet test $pathToTestProjects --configuration $dotnetBuildConfiguration --collect "Code coverage"
+          echo custom pack $pathToPackProjects --output "$(Build.ArtifactStagingDirectory)/release" --configuration $dotnetBuildConfiguration --verbosity $dotnetVerbosity /p:Configuration=$dotnetBuildConfiguration /p:RepositoryBranch=$sourceRepositoryBranch /p:RepositoryCommit=$sourceRepositoryCommit
