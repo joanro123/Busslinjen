@@ -32,8 +32,8 @@ jobs:
        pathToPackProjects: '**/src/**/*.*sproj'
        pathToNugetPackages: '**/*.nupkg'
 
-       sourceRepositoryBranch: $Build.SourceBranchName
-       sourceRepositoryCommit: $Build.SourceVersion
+       sourceRepositoryBranch: Build.SourceBranchName
+       sourceRepositoryCommit: Build.SourceVersion
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
