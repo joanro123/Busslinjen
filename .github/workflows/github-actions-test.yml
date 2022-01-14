@@ -33,9 +33,8 @@ jobs:
        pathToTestProjects: '**/test/**/*.Test.*sproj'
        pathToPackProjects: '**/src/**/*.*sproj'
        pathToNugetPackages: '**/*.nupkg'
-       artifactName: 'nuget-${{ matrix.os }}'
        if: ${{ matrix.os == 'windows-latest' }}
-       arti: 'nuget-windows'
+       artifactName: 'nuget-windows'       
 
     #   sourceRepositoryBranch: ${{ Build.SourceBranchName }}
      #  sourceRepositoryCommit: ${{ Build.SourceVersion }}
