@@ -34,6 +34,8 @@ jobs:
        pathToPackProjects: '**/src/**/*.*sproj'
        pathToNugetPackages: '**/*.nupkg'
        artifactName: 'nuget-${{ matrix.os }}'
+       if: ${{ matrix.os == 'windows-latest' }}
+       arti: 'nuget-windows'
 
     #   sourceRepositoryBranch: ${{ Build.SourceBranchName }}
      #  sourceRepositoryCommit: ${{ Build.SourceVersion }}
@@ -68,7 +70,7 @@ jobs:
       # Runs a set of commands using the runners shell
       - name: Run a multi-line script
         run: |
-          echo Add other actions to build, ${{ env.artifactName }}
+          echo Add other actions to build, ${{ env.arti }}
           echo custom pack ${{ env.pathToPackProjects }} --output $Build.ArtifactStagingDirectory"/ci" --configuration ${{ env.dotnetBuildConfiguration }} --verbosity ${{ env.dotnetVerbosity }} /p:Configuration=${{ env.dotnetBuildConfiguration }} /p:RepositoryBranch=$Build.SourceBranchName /p:RepositoryCommit=${{ env.sourceRepositoryCommit }} /p:VersionSuffix=ci-$Build.BuildNumber
 
 
