@@ -20,7 +20,8 @@ on:
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   # This workflow contains a single job called "build"
-  Build:
+  build:
+    name: Build ${{ matrix.os }}
     # The type of runner that the job will run on
     runs-on: ${{ matrix.os }}
     strategy:
@@ -28,13 +29,11 @@ jobs:
          include:
          - os: windows-latest
            artifactName: "nuget-windows"
-           encryptFiles: true
          - os: macos-latest
            artifactName: "nuget-macos"
-           encryptFiles: false
          - os: ubuntu-latest
            artifactName: "nuget-ubuntu"
-           encryptFiles: false
+
          
         
     env:
