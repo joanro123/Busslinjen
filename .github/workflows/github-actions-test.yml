@@ -1,6 +1,6 @@
 # This is a basic workflow to help you get started with Actions
 
-name: Github Actions Test
+name: Github Actions Test "$(date +'%Y-%m-%d')"
 
 env:
   dotnetBuildConfiguration: 'Release'
@@ -60,7 +60,7 @@ jobs:
       - name: Run a one-line script
         run: 
           echo ${{ env.greeting }} he
-          echo $greeting"/fh" "$(date +'%Y-%m-%d-%m.%s')"
+          echo $greeting"/fh" "$(date +'%Y-%m-%d')"
         env:
           greeting: 'Hello'
         
