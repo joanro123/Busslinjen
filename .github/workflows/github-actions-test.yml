@@ -58,10 +58,9 @@ jobs:
 
       # Runs a single command using the runners shell
       - name: Run a one-line script
-        id: date
         run: 
           echo ${{ env.greeting }} he
-          echo $greeting"/fh" "$(date +'%Y-%m-%d')"
+          echo $greeting"/fh" "$(date +'%Y-%m-%d-%m.%s')"
         env:
           greeting: 'Hello'
         
