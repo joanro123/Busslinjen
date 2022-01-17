@@ -5,7 +5,7 @@ name: Github Actions Test
 env:
   dotnetBuildConfiguration: 'Release'
   dotnetVerbosity: 'Detailed'
-  date: "`R Sys.Date()`"
+  date: Sys.Date()
 
 # Controls when the workflow will run
 on:
