@@ -61,7 +61,7 @@ jobs:
         id: date
         run: 
           echo ${{ env.greeting }} he
-          echo $greeting"/fh" "::set-output name=date::$(date +'%Y-%m-%d')"
+          echo $greeting"/fh" "$(date +'%Y-%m-%d')"
         env:
           greeting: 'Hello'
         
