@@ -59,7 +59,7 @@ jobs:
       # Runs a single command using the runners shell
       - name: Run a one-line script
         run: 
-          echo ${{ env.greeting }} he
+          echo ${{ GITHUB_REF_NAME }}
           echo $greeting"/fh" "$(date +'%Y-%m-%d %H:%M:%S')"
         env:
           greeting: 'Hello'
