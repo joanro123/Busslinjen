@@ -77,6 +77,6 @@ jobs:
       - name: Run a multi-line script
         run: |
           echo Add other actions to build, ${{ matrix.artifactName }}
-          echo custom pack ${{ env.pathToPackProjects }} --output $Build.ArtifactStagingDirectory"/ci" --configuration ${{ env.dotnetBuildConfiguration }} --verbosity ${{ env.dotnetVerbosity }} /p:Configuration=${{ env.dotnetBuildConfiguration }} /p:RepositoryBranch=$Build.SourceBranchName /p:RepositoryCommit=${{ env.sourceRepositoryCommit }} /p:VersionSuffix=ci-$Build.BuildNumber
+          echo ${{ env.pathToPackProjects }} --output $RUNNER_TEMP"/release" --configuration ${{ env.dotnetBuildConfiguration }} --verbosity ${{ env.dotnetVerbosity }} /p:Configuration=${{ env.dotnetBuildConfiguration }} /p:RepositoryBranch=${{ env.sourceRepositoryBranch }} /p:RepositoryCommit=${{ env.sourceRepositoryCommit }}
 
 
