@@ -41,10 +41,9 @@ jobs:
        pathToTestProjects: '**/test/**/*.Test.*sproj'
        pathToPackProjects: '**/src/**/*.*sproj'
        pathToNugetPackages: '**/*.nupkg'
-      # artifactName: 'nuget-${{ matrix.os }}'       
 
-    #   sourceRepositoryBranch: ${{ Build.SourceBranchName }}
-     #  sourceRepositoryCommit: ${{ Build.SourceVersion }}
+       sourceRepositoryBranch: $GITHUB_REF_NAME
+       sourceRepositoryCommit: $GITHUB_SHA
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
