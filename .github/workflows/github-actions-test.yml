@@ -68,7 +68,7 @@ jobs:
         run: 
           echo $GITHUB_REF_NAME  $GITHUB_WORKSPACE"/"${{ env.pathToNugetPackages }}
           echo $greeting"/fh" "$(date +'%Y-%m-%d %H:%M:%S')"
-          echo $RUNNER_TEMP"hej.txt"
+          echo $RUNNER_TEMP"/hej.txt"
         env:
           greeting: 'Hello'
         
