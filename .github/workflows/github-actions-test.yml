@@ -96,6 +96,10 @@ jobs:
         env:
           SECRET_DATA1: ${{ secrets.B64_SECRET1 }}
           
+      - name: Check right directory
+        run:
+          echo $RUNNER_TEMP"secret-file.txt"
+        
       - name: Delete secret file
         run: |
           Remove-Item -Path $env:SECRET_FILE;
