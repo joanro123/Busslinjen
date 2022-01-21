@@ -99,6 +99,7 @@ jobs:
       - name: Check right directory
         run:
           echo $RUNNER_TEMP"secret-file.txt"
+        shell: pwsh
         
       - name: Delete secret file
         run: |
