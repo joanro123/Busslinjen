@@ -78,7 +78,8 @@ jobs:
       - name: Run a multi-line script
         run: |
           echo Add other actions to build, ${{ matrix.artifactName }}
-          echo ${{ env.pathToPackProjects }} --output $RUNNER_TEMP"/release" --configuration ${{ env.dotnetBuildConfiguration }} --verbosity ${{ env.dotnetVerbosity }} /p:Configuration=${{ env.dotnetBuildConfiguration }} /p:RepositoryBranch=${{ env.sourceRepositoryBranch }} /p:RepositoryCommit=${{ env.sourceRepositoryCommit }}
+          echo ${{ env.pathToPackProjects }} --output $env:RUNNER_TEMP"/release" --configuration ${{ env.dotnetBuildConfiguration }} --verbosity ${{ env.dotnetVerbosity }} /p:Configuration=${{ env.dotnetBuildConfiguration }} /p:RepositoryBranch=${{ env.sourceRepositoryBranch }} /p:RepositoryCommit=${{ env.sourceRepositoryCommit }}
+        shell: pwsh
 
   secret:
     name: Build with secret
