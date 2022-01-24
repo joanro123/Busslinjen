@@ -71,6 +71,7 @@ jobs:
           echo samples/IdentityServer.ServerSample/Certificates"/hej.txt"
         env:
           greeting: 'Hello'
+        shell: pwsh
         
 
       # Runs a set of commands using the runners shell
