@@ -42,8 +42,8 @@ jobs:
        pathToPackProjects: '**/src/**/*.*sproj'
        pathToNugetPackages: '**/*.nupkg'
 
-       sourceRepositoryBranch: $GITHUB_REF_NAME
-       sourceRepositoryCommit: $GITHUB_SHA
+       sourceRepositoryBranch: $env:GITHUB_REF_NAME
+       sourceRepositoryCommit: $env:GITHUB_SHA
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
