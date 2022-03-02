@@ -5,6 +5,11 @@
         {
           "files": [
             "src/**.csproj"
+          ],
+          "exclude": [
+            "**/bin/**",
+            "**/obj/**",
+            "_site/**"
           ]
         }
       ],
@@ -59,6 +64,9 @@
     "noLangKeyword": false,
     "keepFileLink": false,
     "cleanupCacheHistory": false,
-    "disableGitFeatures": false
+    "disableGitFeatures": false,
+    "properties": {
+      "TargetFramework": "netcoreapp3.1"
   }
+}
 }
