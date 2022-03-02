@@ -1,0 +1,115 @@
+# This is a basic workflow to help you get started with Actions
+
+name: Github Actions Test
+
+env:
+  dotnetBuildConfiguration: 'Release'
+  dotnetVerbosity: 'Detailed'
+
+# Controls when the workflow will run
+on:
+  # Triggers the workflow on push or pull request events but only for the master branch
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  # This workflow contains a single job called "build"
+  build:
+    name: Build ${{ matrix.os }}
+    # The type of runner that the job will run on
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+         include:
+         - os: windows-latest
+           artifactName: "nuget-windows"
+         - os: macos-latest
+           artifactName: "nuget-macos"
+         - os: ubuntu-latest
+           artifactName: "nuget-ubuntu"
+
+         
+        
+    env:
+       pathToBuildProjects: '**/**/*.*sproj'
+       pathToTestProjects: '**/test/**/*.Test.*sproj'
+       pathToPackProjects: '**/src/**/*.*sproj'
+       pathToNugetPackages: '**/*.nupkg'
+
+       sourceRepositoryBranch: $env:GITHUB_REF_NAME
+       sourceRepositoryCommit: $env:GITHUB_SHA
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v2
+      - name: Setup .NET Core SDK ${{ matrix.dotnet-version }}
+        uses: actions/setup-dotnet@v1.7.2
+        with:
+          dotnet-version: ${{ matrix.dotnet-version }}
+                 
+      - name: Dotnet restore
+        run: dotnet restore
+      
+      - name: Dotnet build
+        run: dotnet build --configuration Release --no-restore
+      
+      - name: Test
+        run: dotnet test --no-restore --verbosity normal
+
+      # Runs a single command using the runners shell
+      - name: Run a one-line script
+        run: 
+          echo $env:GITHUB_WORKSPACE"/"${{ env.pathToNugetPackages }}
+          echo $greeting"/fh" "$(date +'%Y-%m-%d %H:%M:%S')"
+          echo samples/IdentityServer.ServerSample/Certificates"/hej.txt"
+        env:
+          greeting: 'Hello'
+        shell: pwsh
+        
+
+      # Runs a set of commands using the runners shell
+      - name: Run a multi-line script
+        run: |
+          echo Add other actions to build, ${{ matrix.artifactName }}
+          echo --output $env:RUNNER_TEMP"/release" --configuration ${{ env.dotnetBuildConfiguration }} --verbosity ${{ env.dotnetVerbosity }} /p:Configuration=${{ env.dotnetBuildConfiguration }} /p:RepositoryBranch=${{ env.sourceRepositoryBranch }} /p:RepositoryCommit=${{ env.sourceRepositoryCommit }}
+        shell: pwsh
+
+  secret:
+    name: Build with secret
+    runs-on: windows-latest
+    steps:
+      - name: Create secret-file.txt from B64_SECRET1
+        id: secret-file1
+        run: |
+          $secretFile = Join-Path -Path $env:RUNNER_TEMP -ChildPath "secret-file.txt"; 
+          $encodedBytes = [System.Convert]::FromBase64String($env:SECRET_DATA1); 
+          Set-Content $secretFile -Value $encodedBytes -AsByteStream;
+          $secretFileHash = Get-FileHash $secretFile;
+          Write-Output "::set-output name=SECRET_FILE::$secretFile";
+          Write-Output "::set-output name=SECRET_FILE_HASH::$($secretFileHash.Hash)";
+          Write-Output "Secret file $secretFile has hash $($secretFileHash.Hash)";
+        shell: pwsh
+        env:
+          SECRET_DATA1: ${{ secrets.B64_SECRET1 }}
+          
+      - name: Check right directory
+        run:
+          echo $RUNNER_TEMP"secret-file.txt"
+        shell: pwsh
+        
+      - name: Delete secret file
+        run: |
+          Remove-Item -Path $env:SECRET_FILE;
+        shell: pwsh
+        if: always()
+        env:
+          SECRET_FILE: ${{ steps.secret-file1.outputs.SECRET_FILE }}
+      
+  
