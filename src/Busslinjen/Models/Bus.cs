@@ -9,9 +9,9 @@ namespace Busslinjen.Models
     /// </summary>
     public class Bus
     {
-         /// <param name="MaxPassengers">
+         /// <summary>
         /// maximum amount of passengers
-        /// </param>
+        /// </summary>
         public int MaxPassengers { get; set; } = 10;
         public int PassengersInTheBus { get; set; }
         public bool BusFull { get; set; } = false;
